@@ -1,4 +1,3 @@
-<?php require_once 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,28 +64,35 @@
         </div>
     </section>
 
-    <section class="quote-box">
+    <section class="welcome-box">
+        <h1>Un espace cosy pour lire et échanger</h1>
         <p>
-            “Un lecteur vit mille vies avant de mourir. Celui qui ne lit pas n’en vit qu’une.”
+            Plume Partagée est pensé comme un endroit calme et chaleureux,
+            où chaque utilisateur peut prendre le temps de lire, découvrir
+            et partager sans pression.
         </p>
     </section>
 
-    <section class="highlight-box">
-        <div class="highlight-text">
-            <h2>Un espace cosy pour lire et échanger</h2>
+    <section class="cards-section">
+        <div class="card">
+            <h2>🌙 Ambiance détente</h2>
             <p>
-                Plume Partagée est pensé comme un endroit calme et chaleureux,
-                où l’on peut découvrir de nouvelles histoires, partager ses impressions
-                et profiter d’un moment de lecture dans une ambiance douce.
+                Un design doux et apaisant pour profiter de tes moments de lecture.
             </p>
         </div>
 
-        <div class="highlight-side">
-            <h3>❤️ L’esprit du site</h3>
-            <p>Découvrir</p>
-            <p>Partager</p>
-            <p>Échanger</p>
-            <p>Profiter</p>
+        <div class="card">
+            <h2>💡 Découvertes</h2>
+            <p>
+                Laisse-toi surprendre par de nouvelles histoires et de nouveaux univers.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>❤️ Partage</h2>
+            <p>
+                Échange avec d’autres passionnés et enrichis ton expérience de lecteur.
+            </p>
         </div>
     </section>
 
