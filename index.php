@@ -28,66 +28,121 @@
     <a href="pages/entreprise.php">À propos de nous</a>
 </nav>
 
-    <main class="main-content">
+<main class="main-content">
 
-    <section class="welcome-box">
-        <h1>Bienvenue sur Plume Partagée ✨</h1>
-        <p>
-            Installe-toi confortablement et laisse-toi emporter dans un univers
-            dédié aux livres et aux histoires. Ici, chaque lecteur peut partager
-            ses découvertes, ses émotions et ses coups de cœur.
-        </p>
+    <section class="hero-home">
+        <div class="hero-text">
+            <span class="hero-badge">✨ Univers lecture & partage</span>
+            <h1>Bienvenue sur <span>Plume Partagée</span></h1>
+            <p>
+                Entre dans un espace chaleureux où les livres circulent, les avis se croisent
+                et les histoires continuent de vivre. Découvre, partage et échange dans une
+                ambiance douce et inspirante.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="pages/bibliotheque.php" class="btn-main">Explorer la bibliothèque</a>
+                <a href="pages/forum.php" class="btn-secondary">Voir le forum</a>
+            </div>
+
+            <div class="hero-tags">
+                <span>📚 Romans</span>
+                <span>🌙 Ambiance cosy</span>
+                <span>⭐ Avis lecteurs</span>
+                <span>🛍️ Vente & échange</span>
+            </div>
+        </div>
+
+        <div class="hero-side">
+            <div class="hero-card-large">
+                <p class="mini-title">Citation du moment</p>
+                <p class="hero-quote">
+                    “Un lecteur vit mille vies avant de mourir. Celui qui ne lit pas n’en vit qu’une.”
+                </p>
+            </div>
+
+            <div class="hero-mini-stats">
+                <div class="mini-stat">
+                    <strong>📖 Découvrir</strong>
+                    <span>de nouvelles lectures</span>
+                </div>
+                <div class="mini-stat">
+                    <strong>💬 Partager</strong>
+                    <span>ses impressions</span>
+                </div>
+                <div class="mini-stat">
+                    <strong>🔄 Échanger</strong>
+                    <span>et faire vivre les livres</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="cards-section">
-        <div class="card">
-            <h2>📚 Trouve ta prochaine lecture</h2>
+    <section class="home-features">
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h2>Trouve ta prochaine lecture</h2>
             <p>
-                Parcours des œuvres recommandées et découvre des livres qui
-                correspondent à ton univers.
+                Parcours des œuvres recommandées, découvre des univers variés
+                et laisse-toi surprendre par de nouveaux coups de cœur.
             </p>
+            <a href="pages/bibliotheque.php">Découvrir</a>
         </div>
 
-        <div class="card">
-            <h2>⭐ Partage ton ressenti</h2>
+        <div class="feature-card">
+            <div class="feature-icon">⭐</div>
+            <h2>Partage ton ressenti</h2>
             <p>
-                Donne ton avis, note les livres et aide les autres lecteurs à
-                choisir leur prochaine lecture.
+                Donne ton avis, note les livres et échange avec d’autres lecteurs
+                pour enrichir chaque découverte.
             </p>
+            <a href="pages/forum.php">Participer</a>
         </div>
 
-        <div class="card">
-            <h2>🛍️ Donne une seconde vie aux livres</h2>
+        <div class="feature-card">
+            <div class="feature-icon">🛍️</div>
+            <h2>Offre une seconde vie aux livres</h2>
             <p>
-                Échange, vends ou trouve des ouvrages pour continuer à faire vivre
-                les histoires.
+                Vends, échange ou retrouve des ouvrages pour prolonger
+                leur histoire entre plusieurs lecteurs.
             </p>
+            <a href="pages/vente.php">Voir les annonces</a>
         </div>
     </section>
 
-    <section class="quote-box">
-        <p>
-            “Un lecteur vit mille vies avant de mourir. Celui qui ne lit pas n’en vit qu’une.”
-        </p>
-    </section>
-
-    <section class="highlight-box">
-        <div class="highlight-text">
-            <h2>Un espace cosy pour lire et échanger</h2>
+    <section class="home-highlight">
+        <div class="highlight-left">
+            <h2>Un cocon pour les amoureux des histoires</h2>
             <p>
-                Plume Partagée est pensé comme un endroit calme et chaleureux,
-                où l’on peut découvrir de nouvelles histoires, partager ses impressions
-                et profiter d’un moment de lecture dans une ambiance douce.
+                Plume Partagée est pensé comme un lieu calme, inspirant et accueillant.
+                Ici, on prend le temps de lire, de discuter, de transmettre ses émotions
+                et de créer des passerelles entre lecteurs.
             </p>
+
+            <div class="highlight-points">
+                <div class="point-box">☕ Une ambiance douce et chaleureuse</div>
+                <div class="point-box">💛 Des échanges simples et sincères</div>
+                <div class="point-box">📖 Des découvertes pour tous les goûts</div>
+                <div class="point-box">🌟 Une communauté autour des livres</div>
+            </div>
         </div>
 
-        <div class="highlight-side">
+        <div class="highlight-right">
             <h3>❤️ L’esprit du site</h3>
-            <p>Découvrir</p>
-            <p>Partager</p>
-            <p>Échanger</p>
-            <p>Profiter</p>
+            <ul>
+                <li>Découvrir</li>
+                <li>Partager</li>
+                <li>Échanger</li>
+                <li>Profiter</li>
+            </ul>
         </div>
+    </section>
+
+    <section class="home-bottom-banner">
+        <h2>Chaque livre mérite une nouvelle rencontre</h2>
+        <p>
+            Lis, recommande, commente ou revends : sur Plume Partagée, chaque page peut continuer son voyage.
+        </p>
     </section>
 
 </main>
