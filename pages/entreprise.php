@@ -1,10 +1,11 @@
+<?php require_once '../config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plume Partagée - Accueil</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
@@ -28,75 +29,8 @@
 </nav>
 
     <main class="main-content">
-
-    <section class="welcome-box">
-        <h1>Bienvenue sur Plume Partagée ✨</h1>
-        <p>
-            Installe-toi confortablement et laisse-toi emporter dans un univers
-            dédié aux livres et aux histoires. Ici, chaque lecteur peut partager
-            ses découvertes, ses émotions et ses coups de cœur.
-        </p>
-    </section>
-
-    <section class="cards-section">
-        <div class="card">
-            <h2>📚 Trouve ta prochaine lecture</h2>
-            <p>
-                Parcours des œuvres recommandées et découvre des livres qui
-                correspondent à ton univers.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>⭐ Partage ton ressenti</h2>
-            <p>
-                Donne ton avis, note les livres et aide les autres lecteurs à
-                choisir leur prochaine lecture.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>🛍️ Donne une seconde vie aux livres</h2>
-            <p>
-                Échange, vends ou trouve des ouvrages pour continuer à faire vivre
-                les histoires.
-            </p>
-        </div>
-    </section>
-
-    <section class="welcome-box">
-        <h1>Un espace cosy pour lire et échanger</h1>
-        <p>
-            Plume Partagée est pensé comme un endroit calme et chaleureux,
-            où chaque utilisateur peut prendre le temps de lire, découvrir
-            et partager sans pression.
-        </p>
-    </section>
-
-    <section class="cards-section">
-        <div class="card">
-            <h2>🌙 Ambiance détente</h2>
-            <p>
-                Un design doux et apaisant pour profiter de tes moments de lecture.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>💡 Découvertes</h2>
-            <p>
-                Laisse-toi surprendre par de nouvelles histoires et de nouveaux univers.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>❤️ Partage</h2>
-            <p>
-                Échange avec d’autres passionnés et enrichis ton expérience de lecteur.
-            </p>
-        </div>
-    </section>
-
-</main>
+        HEY !
+    </main>
 
     <footer class="footer">
         <a href="pages/entreprise.php#aide">Aide</a>

@@ -1,129 +1,227 @@
+<?php require_once '../config.php'; ?>
+
+<?php
+$message = "";
+
+if (!isset($_SESSION["panier"])) {
+    $_SESSION["panier"] = [];
+}
+
+if (isset($_POST["ajouter_annonce"])) {
+    if (isset($_SESSION["utilisateur_id"])) {
+        $titre = trim($_POST["titre"]);
+        $description = trim($_POST["description"]);
+        $prix = $_POST["prix"];
+        $utilisateur_id = $_SESSION["utilisateur_id"];
+
+        if ($titre != "" && $description != "" && $prix != "" && isset($_FILES["image"])) {
+            $nom_image = $_FILES["image"]["name"];
+            $tmp_image = $_FILES["image"]["tmp_name"];
+
+            $extension = pathinfo($nom_image, PATHINFO_EXTENSION);
+            $nouveau_nom = uniqid() . "." . $extension;
+
+            $dossier = "../uploads/annonces/";
+            $chemin_image = $dossier . $nouveau_nom;
+
+            if (move_uploaded_file($tmp_image, $chemin_image)) {
+                $image_bdd = "uploads/annonces/" . $nouveau_nom;
+
+                $sql = "INSERT INTO annonces (titre, description, image, prix, utilisateur_id)
+                        VALUES (?, ?, ?, ?, ?)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$titre, $description, $image_bdd, $prix, $utilisateur_id]);
+
+                header("Location: vente.php");
+                exit;
+            } else {
+                $message = "Erreur lors de l'envoi de l'image.";
+            }
+        } else {
+            $message = "Veuillez remplir tous les champs.";
+        }
+    } else {
+        $message = "Vous devez être connecté pour publier une annonce.";
+    }
+}
+
+if (isset($_POST["ajouter_panier"])) {
+    $annonce_id = $_POST["annonce_id"];
+
+    $sql = "SELECT * FROM annonces WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$annonce_id]);
+    $annonce = $stmt->fetch();
+
+    if ($annonce) {
+        $article = [
+            "id" => $annonce["id"],
+            "titre" => $annonce["titre"],
+            "description" => $annonce["description"],
+            "prix" => $annonce["prix"],
+            "image" => $annonce["image"],
+            "quantite" => 1
+        ];
+
+        $_SESSION["panier"][] = $article;
+
+        $message = "L'article a été ajouté au panier.";
+    }
+}
+
+$nombre_articles = 0;
+
+foreach ($_SESSION["panier"] as $article) {
+    $nombre_articles = $nombre_articles + $article["quantite"];
+}
+
+$sql = "SELECT annonces.*, utilisateurs.pseudo
+        FROM annonces
+        INNER JOIN utilisateurs ON annonces.utilisateur_id = utilisateurs.id
+        ORDER BY annonces.date_creation DESC";
+
+$stmt = $pdo->query($sql);
+$annonces = $stmt->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plume Partagée - Vente</title>
+    <title>Vente - Plume Partagée</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
 
-    <header class="header">
-        <div class="logo">
-            <a href="../index.php">Plume Partagée</a>
-        </div>
+<body class="page-vente">
 
-        <div class="header-buttons">
-            <a href="../comptes/connecter.php" class="btn-header">Se connecter</a>
-        </div>
-    </header>
+<header class="header">
+    <div class="logo">
+        <a href="../index.php">Plume Partagée</a>
+    </div>
 
-    <nav class="navbar">
-        <a href="../index.php">Accueil</a>
-        <a href="forum.php">Forum</a>
-        <a href="vente.php">Vente</a>
-        <a href="classement.php">Classement</a>
-        <a href="bibliotheque.php">Bibliothèque</a>
-        <a href="entreprise.php">À propos de nous</a>
-    </nav>
+    <div class="header-buttons">
+        <?php if (isset($_SESSION["pseudo"])): ?>
+            <span class="user-name">Bonjour <?php echo htmlspecialchars($_SESSION["pseudo"]); ?></span>
+            <a href="deconnexion.php" class="btn-header">Déconnexion</a>
+        <?php else: ?>
+            <a href="connecter.php" class="btn-header">Se connecter</a>
+        <?php endif; ?>
+    </div>
+</header>
 
-    <main class="main-content">
+<nav class="navbar">
+    <a href="../index.php">Accueil</a>
+    <a href="forum.php">Forum</a>
+    <a href="vente.php">Vente</a>
+    <a href="classement.php">Classement</a>
+    <a href="bibliotheque.php">Bibliothèque</a>
+    <a href="entreprise.php">À propos de nous</a>
+</nav>
 
-        <section class="welcome-box">
-            <h1>Espace de vente 🛍️</h1>
+<main class="main">
+
+    <section class="vente-intro">
+        <div>
+            <h1>Espace vente</h1>
             <p>
-                Cet espace permet aux utilisateurs de vendre ou d’acheter des livres
-                d’occasion. Chaque annonce présente les informations essentielles sur
-                l’ouvrage, son état et son vendeur.
+                Ici, les utilisateurs peuvent publier des livres à vendre avec une photo,
+                un titre, une description et un prix.
             </p>
-        </section>
+        </div>
 
-        <section class="sale-toolbar">
-            <div class="sale-filter">Romans</div>
-            <div class="sale-filter">Mangas</div>
-            <div class="sale-filter">Webtoons</div>
-            <div class="sale-filter">Fantasy</div>
-            <div class="sale-filter">Romance</div>
-            <div class="sale-filter">Thriller</div>
-        </section>
+        <div class="panier-resume">
+            <p>Panier</p>
+            <strong><?php echo $nombre_articles; ?> article(s)</strong>
+            <a href="panier.php">Voir le panier</a>
+        </div>
+    </section>
 
-        <section class="sale-grid">
-            <article class="sale-card">
-                <div class="sale-cover">Couverture</div>
-                <h2>Le pacte des ombres</h2>
-                <p class="sale-author">Auteur : Claire Martin</p>
-                <p class="sale-price">Prix : 7,50 €</p>
-                <p class="sale-description">
-                    Roman en très bon état, lu une seule fois. Idéal pour les amateurs
-                    de mystère et de fantastique.
-                </p>
-                <div class="sale-info">
-                    <p>Vendeur : Lina92</p>
-                    <p>État : Très bon état</p>
-                    <p>Mise en ligne : aujourd’hui</p>
-                </div>
-            </article>
+    <?php if ($message != ""): ?>
+        <p class="message"><?php echo htmlspecialchars($message); ?></p>
+    <?php endif; ?>
 
-            <article class="sale-card">
-                <div class="sale-cover">Couverture</div>
-                <h2>Les jours d’automne</h2>
-                <p class="sale-author">Auteur : Julien Morel</p>
-                <p class="sale-price">Prix : 5,00 €</p>
-                <p class="sale-description">
-                    Livre d’occasion avec quelques traces d’usage, mais reste en bon état.
-                    Histoire touchante et agréable à lire.
-                </p>
-                <div class="sale-info">
-                    <p>Vendeur : EmmaReads</p>
-                    <p>État : Bon état</p>
-                    <p>Mise en ligne : hier</p>
-                </div>
-            </article>
+    <div class="vente-layout">
 
-            <article class="sale-card">
-                <div class="sale-cover">Couverture</div>
-                <h2>Éclats de lune</h2>
-                <p class="sale-author">Auteur : Sarah Noé</p>
-                <p class="sale-price">Prix : 9,00 €</p>
-                <p class="sale-description">
-                    Roman récent, couverture propre, pages intactes. Convient parfaitement
-                    pour une lecture légère et captivante.
-                </p>
-                <div class="sale-info">
-                    <p>Vendeur : NoahBook</p>
-                    <p>État : Comme neuf</p>
-                    <p>Mise en ligne : il y a 2 jours</p>
-                </div>
-            </article>
-        </section>
+        <section class="annonces-liste">
+            <h2>Livres en vente</h2>
 
-        <section class="highlight-box">
-            <div class="highlight-text">
-                <h2>Une seconde vie pour les livres</h2>
-                <p>
-                    Grâce à cet espace, les utilisateurs peuvent revendre leurs ouvrages,
-                    découvrir de nouvelles lectures et participer à une consommation plus
-                    responsable autour du livre.
-                </p>
-            </div>
+            <?php if (count($annonces) == 0): ?>
+                <p>Aucune annonce pour le moment.</p>
+            <?php endif; ?>
 
-            <div class="highlight-side">
-                <h3>📚 Avantages</h3>
-                <p>Prix accessibles</p>
-                <p>Choix varié</p>
-                <p>Échange entre lecteurs</p>
-                <p>Réutilisation des livres</p>
+            <div class="annonces-grid">
+                <?php foreach ($annonces as $annonce): ?>
+                    <article class="annonce-card">
+                        <img src="../<?php echo htmlspecialchars($annonce["image"]); ?>" alt="Image du livre">
+
+                        <div class="annonce-contenu">
+                            <h3><?php echo htmlspecialchars($annonce["titre"]); ?></h3>
+
+                            <p class="annonce-info">
+                                Posté par <strong><?php echo htmlspecialchars($annonce["pseudo"]); ?></strong>
+                                le <?php echo $annonce["date_creation"]; ?>
+                            </p>
+
+                            <p><?php echo htmlspecialchars($annonce["description"]); ?></p>
+
+                            <p class="annonce-prix">
+                                <?php echo number_format($annonce["prix"], 2, ",", " "); ?> €
+                            </p>
+
+                            <form method="POST">
+                                <input type="hidden" name="annonce_id" value="<?php echo $annonce["id"]; ?>">
+                                <button type="submit" name="ajouter_panier">Ajouter au panier</button>
+                            </form>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
             </div>
         </section>
 
-    </main>
+        <aside class="annonce-formulaire">
+            <?php if (isset($_SESSION["utilisateur_id"])): ?>
 
-    <footer class="footer">
-        <a href="entreprise.php#aide">Aide</a>
-        <a href="entreprise.php#services">Services</a>
-        <a href="entreprise.php#entreprise">L’entreprise</a>
-        <a href="entreprise.php#questions">Questions?</a>
-    </footer>
+                <h2>Ajouter une annonce</h2>
+
+                <form method="POST" enctype="multipart/form-data">
+                    <label for="titre">Titre du livre</label>
+                    <input type="text" id="titre" name="titre" placeholder="Exemple : Demon Slayer Tome 1">
+
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Décris l'état du livre, le type d'œuvre, etc."></textarea>
+
+                    <label for="prix">Prix</label>
+                    <input type="number" id="prix" name="prix" step="0.01" min="0" placeholder="Exemple : 6.50">
+
+                    <label for="image">Photo du livre</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+
+                    <button type="submit" name="ajouter_annonce">Publier l'annonce</button>
+                </form>
+
+            <?php else: ?>
+
+                <h2>Ajouter une annonce</h2>
+                <p>Vous devez être connecté pour vendre un livre.</p>
+
+                <div class="connexion-buttons">
+                    <a href="connecter.php">Se connecter</a>
+                    <a href="inscrire.php">Créer un compte</a>
+                </div>
+
+            <?php endif; ?>
+        </aside>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    <a href="entreprise.php#aide">Aide</a>
+    <a href="entreprise.php#services">Services</a>
+    <a href="entreprise.php#entreprise">L’entreprise</a>
+    <a href="entreprise.php#questions">Questions?</a>
+</footer>
 
 </body>
 </html>

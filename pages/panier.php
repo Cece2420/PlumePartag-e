@@ -1,109 +1,172 @@
+<?php require_once '../config.php'; ?>
+
+<?php
+if (!isset($_SESSION["panier"])) {
+    $_SESSION["panier"] = [];
+}
+
+$message = "";
+
+if (isset($_POST["supprimer_article"])) {
+    $index = $_POST["index"];
+
+    if (isset($_SESSION["panier"][$index])) {
+        unset($_SESSION["panier"][$index]);
+        $_SESSION["panier"] = array_values($_SESSION["panier"]);
+        $message = "Article retiré du panier.";
+    }
+}
+
+$sous_total = 0;
+
+foreach ($_SESSION["panier"] as $article) {
+    $sous_total = $sous_total + ($article["prix"] * $article["quantite"]);
+}
+
+$livraison = 2.50;
+
+if (count($_SESSION["panier"]) == 0) {
+    $livraison = 0;
+}
+
+$total = $sous_total + $livraison;
+$nombre_articles = count($_SESSION["panier"]);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plume Partagée - Accueil</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Plume Partagée - Mon Panier</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
 
-    <header class="header">
-        <div class="logo">
-            <a href="index.php">Plume Partagée</a>
-        </div>
+<body class="page-panier">
 
-        <div class="header-buttons">
-            <a href="comptes/connecter.php" class="btn-header">Se connecter</a>
-        </div>
-    </header>
+<header class="header">
+    <div class="logo">
+        <a href="../index.php">Plume Partagée</a>
+    </div>
+
+    <div class="header-buttons">
+        <?php if (isset($_SESSION["pseudo"])): ?>
+            <span class="user-name">Bonjour <?php echo htmlspecialchars($_SESSION["pseudo"]); ?></span>
+            <a href="deconnexion.php" class="btn-header">Déconnexion</a>
+        <?php else: ?>
+            <a href="connecter.php" class="btn-header">Se connecter</a>
+        <?php endif; ?>
+    </div>
+</header>
 
 <nav class="navbar">
-    <a href="index.php">Accueil</a>
-    <a href="pages/forum.php">Forum</a>
-    <a href="pages/vente.php">Vente</a>
-    <a href="pages/classement.php">Classement</a>
-    <a href="pages/bibliotheque.php">Bibliothèque</a>
-    <a href="pages/entreprise.php">À propos de nous</a>
+    <a href="../index.php">Accueil</a>
+    <a href="forum.php">Forum</a>
+    <a href="vente.php">Vente</a>
+    <a href="classement.php">Classement</a>
+    <a href="bibliotheque.php">Bibliothèque</a>
+    <a href="entreprise.php">À propos de nous</a>
 </nav>
 
-    <main class="main-content">
+<main class="main">
 
-    <section class="welcome-box">
-        <h1>Bienvenue sur Plume Partagée ✨</h1>
-        <p>
-            Installe-toi confortablement et laisse-toi emporter dans un univers
-            dédié aux livres et aux histoires. Ici, chaque lecteur peut partager
-            ses découvertes, ses émotions et ses coups de cœur.
-        </p>
-    </section>
+    <h1 class="panier-titre">Mon panier</h1>
 
-    <section class="cards-section">
-        <div class="card">
-            <h2>📚 Trouve ta prochaine lecture</h2>
-            <p>
-                Parcours des œuvres recommandées et découvre des livres qui
-                correspondent à ton univers.
-            </p>
-        </div>
+    <?php if ($message != ""): ?>
+        <p class="message"><?php echo htmlspecialchars($message); ?></p>
+    <?php endif; ?>
 
-        <div class="card">
-            <h2>⭐ Partage ton ressenti</h2>
-            <p>
-                Donne ton avis, note les livres et aide les autres lecteurs à
-                choisir leur prochaine lecture.
-            </p>
-        </div>
+    <div class="panier-layout">
 
-        <div class="card">
-            <h2>🛍️ Donne une seconde vie aux livres</h2>
-            <p>
-                Échange, vends ou trouve des ouvrages pour continuer à faire vivre
-                les histoires.
-            </p>
-        </div>
-    </section>
+        <section class="panier-articles">
 
-    <section class="welcome-box">
-        <h1>Un espace cosy pour lire et échanger</h1>
-        <p>
-            Plume Partagée est pensé comme un endroit calme et chaleureux,
-            où chaque utilisateur peut prendre le temps de lire, découvrir
-            et partager sans pression.
-        </p>
-    </section>
+            <?php if (count($_SESSION["panier"]) == 0): ?>
 
-    <section class="cards-section">
-        <div class="card">
-            <h2>🌙 Ambiance détente</h2>
-            <p>
-                Un design doux et apaisant pour profiter de tes moments de lecture.
-            </p>
-        </div>
+                <div class="panier-vide">
+                    <div class="panier-icone">📚</div>
+                    <p>Ton panier est vide pour l’instant.</p>
+                    <a href="vente.php">Parcourir les annonces</a>
+                </div>
 
-        <div class="card">
-            <h2>💡 Découvertes</h2>
-            <p>
-                Laisse-toi surprendre par de nouvelles histoires et de nouveaux univers.
-            </p>
-        </div>
+            <?php else: ?>
 
-        <div class="card">
-            <h2>❤️ Partage</h2>
-            <p>
-                Échange avec d’autres passionnés et enrichis ton expérience de lecteur.
-            </p>
-        </div>
-    </section>
+                <?php foreach ($_SESSION["panier"] as $index => $article): ?>
+                    <article class="panier-item">
+
+                        <img
+                            class="panier-item-image"
+                            src="../<?php echo htmlspecialchars($article["image"]); ?>"
+                            alt="Image du livre"
+                        >
+
+                        <div class="panier-item-info">
+                            <h3><?php echo htmlspecialchars($article["titre"]); ?></h3>
+
+                            <p class="item-description">
+                                <?php echo htmlspecialchars($article["description"]); ?>
+                            </p>
+
+                            <p class="item-vendeur">
+                                Quantité : <strong><?php echo $article["quantite"]; ?></strong>
+                            </p>
+                        </div>
+
+                        <div class="panier-item-right">
+                            <span class="item-prix">
+                                <?php echo number_format($article["prix"], 2, ",", " "); ?> €
+                            </span>
+
+                            <form method="POST">
+                                <input type="hidden" name="index" value="<?php echo $index; ?>">
+                                <button type="submit" name="supprimer_article" class="btn-supprimer">
+                                    Retirer
+                                </button>
+                            </form>
+                        </div>
+
+                    </article>
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+
+        </section>
+
+        <aside class="panier-recap">
+            <div class="recap-box">
+                <h2>Récapitulatif</h2>
+
+                <div class="recap-ligne">
+                    <span><?php echo $nombre_articles; ?> article(s)</span>
+                    <span><?php echo number_format($sous_total, 2, ",", " "); ?> €</span>
+                </div>
+
+                <div class="recap-ligne">
+                    <span>Livraison</span>
+                    <span><?php echo number_format($livraison, 2, ",", " "); ?> €</span>
+                </div>
+
+                <div class="recap-ligne total">
+                    <span>Total</span>
+                    <span><?php echo number_format($total, 2, ",", " "); ?> €</span>
+                </div>
+
+                <button class="btn-commander" type="button">
+                    Passer la commande
+                </button>
+
+                <a href="vente.php" class="btn-continuer">Continuer mes achats</a>
+            </div>
+        </aside>
+
+    </div>
 
 </main>
 
-    <footer class="footer">
-        <a href="pages/entreprise.php#aide">Aide</a>
-        <a href="pages/entreprise.php#services">Services</a>
-        <a href="pages/entreprise.php#entreprise">L’entreprise</a>
-        <a href="pages/entreprise.php#questions">Questions?</a>
-    </footer>
+<footer class="footer">
+    <a href="entreprise.php#aide">Aide</a>
+    <a href="entreprise.php#services">Services</a>
+    <a href="entreprise.php#entreprise">L’entreprise</a>
+    <a href="entreprise.php#questions">Questions?</a>
+</footer>
 
 </body>
 </html>

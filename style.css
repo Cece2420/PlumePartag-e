@@ -4,10 +4,18 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    min-height: 100%;
+}
+
 body {
     background-color: #dcc9a9;
     font-family: Arial, sans-serif;
     color: #3f382d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -24,6 +32,17 @@ body {
     font-size: 42px;
     font-family: Georgia, serif;
     font-weight: bold;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #4d4433;
 }
 
 .btn-header {
@@ -63,6 +82,7 @@ body {
     margin: 20px 30px;
     padding: 30px;
     border-radius: 8px;
+    flex: 1;
 }
 
 .accueil {
@@ -241,12 +261,273 @@ body {
     font-size: 17px;
 }
 
+.page-auth .auth-card {
+    background-color: #f8f5ef;
+    padding: 35px;
+    border-radius: 10px;
+    width: 600px;
+    margin: 20px auto;
+}
+
+.page-auth .auth-card h1 {
+    color: #8c7a1a;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.page-auth .auth-card p {
+    margin-bottom: 20px;
+}
+
+.page-auth form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.page-auth label {
+    font-weight: bold;
+}
+
+.page-auth input {
+    padding: 12px;
+    border: 1px solid #d1c4a3;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.page-auth button {
+    background-color: #9f8d1e;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.page-auth button:hover {
+    background-color: #817316;
+}
+
+.auth-link {
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: #8c7a1a;
+    font-weight: bold;
+}
+
+.page-forum .forum-layout {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.page-forum .forum-left {
+    flex: 2;
+}
+
+.page-forum .forum-right {
+    flex: 1;
+}
+
+.page-forum .intro-forum,
+.page-forum .connexion-info,
+.page-forum .form-section,
+.page-forum .liste-sujets {
+    background-color: #f8f5ef;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-forum .intro-forum h1,
+.page-forum .form-section h2,
+.page-forum .liste-sujets h2,
+.page-forum .connexion-info h2 {
+    color: #8c7a1a;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.page-forum .intro-forum p,
+.page-forum .connexion-info p {
+    font-size: 17px;
+}
+
+.page-forum form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.page-forum label {
+    font-weight: bold;
+}
+
+.page-forum input,
+.page-forum textarea,
+.page-forum select {
+    padding: 12px;
+    border: 1px solid #d1c4a3;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.page-forum textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.page-forum button {
+    background-color: #9f8d1e;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.page-forum button:hover {
+    background-color: #817316;
+}
+
+.page-forum .connexion-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.page-forum .connexion-buttons a {
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.page-forum .connexion-buttons a:hover {
+    background-color: #817316;
+}
+
+.page-forum .sujet {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 18px;
+    border: 1px solid #eee5d5;
+}
+
+.page-forum .sujet-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.page-forum .sujet h3 {
+    color: #8c7a1a;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.page-forum .sujet-info {
+    color: #6b6255;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.page-forum .sujet-stats {
+    text-align: right;
+    font-weight: bold;
+    min-width: 110px;
+}
+
+.page-forum .sujet-stats p {
+    margin-bottom: 5px;
+}
+
+.page-forum .sujet-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.page-forum .sujet-actions form {
+    display: block;
+}
+
+.page-forum .sujet-actions button {
+    width: auto;
+    padding: 10px 18px;
+}
+
+-- commentaire
+
+.page-forum .commentaires-zone {
+    background-color: #f3ecdf;
+    padding: 18px;
+    border-radius: 8px;
+    margin-top: 18px;
+}
+
+.page-forum .commentaires-zone h4 {
+    color: #8c7a1a;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.page-forum .commentaire {
+    background-color: white;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.page-forum .commentaire-form {
+    margin-top: 18px;
+}
+
+.page-forum .petit-message {
+    margin-top: 15px;
+    font-style: italic;
+    color: #6b6255;
+}
+
+.message {
+    background-color: #fff3cd;
+    color: #6b5b00;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.message-js,
+.aide-js {
+    font-size: 14px;
+    font-weight: bold;
+    color: #8c7a1a;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #4d4433;
+}
+
 .footer {
     background-color: #9f8d1e;
     padding: 22px;
     display: flex;
     justify-content: center;
     gap: 30px;
+    margin-top: auto;
 }
 
 .footer a {
@@ -259,206 +540,338 @@ body {
     text-decoration: underline;
 }
 
-// Forum Page Styles
-
-.forum-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+.page-vente .vente-intro {
     background-color: #f8f5ef;
-    border-radius: 12px;
-    padding: 20px 25px;
-}
-
-.forum-category {
-    font-size: 18px;
-    font-weight: bold;
-    color: #8c7a1a;
-}
-
-.forum-button {
-    background-color: #9f8d1e;
-    color: white;
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-}
-
-.forum-button:hover {
-    background-color: #8b7a18;
-}
-
-.forum-list {
-    margin-bottom: 30px;
-}
-
-.forum-topic {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    background-color: #f8f5ef;
-    border-radius: 12px;
     padding: 25px;
-    margin-bottom: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
 }
 
-.forum-topic-full {
-    margin-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.forum-topic-left {
-    flex: 3;
-}
-
-.forum-topic-left h2 {
+.page-vente .vente-intro h1 {
     color: #8c7a1a;
-    font-size: 24px;
-    margin-bottom: 8px;
-}
-
-.forum-meta {
-    font-size: 14px;
-    color: #7a715f;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
-.forum-topic-right {
-    flex: 1;
-    text-align: right;
-    font-size: 16px;
-    color: #4d4433;
+.page-vente .panier-resume {
+    background-color: white;
+    padding: 18px;
+    border-radius: 8px;
+    min-width: 180px;
+    text-align: center;
 }
 
-.comments-box {
-    background-color: #fcfaf5;
-    border-radius: 0 0 12px 12px;
-    padding: 20px 25px;
-    margin-bottom: 25px;
-    border-top: 1px solid #e6dccb;
-}
-
-.comments-box h3 {
+.page-vente .panier-resume strong {
+    display: block;
+    margin: 8px 0;
     color: #8c7a1a;
+}
+
+.page-vente .panier-resume a {
+    color: white;
+    background-color: #9f8d1e;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.page-vente .vente-layout {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.page-vente .annonces-liste {
+    flex: 2;
+    background-color: #f8f5ef;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.page-vente .annonces-liste h2,
+.page-vente .annonce-formulaire h2 {
+    color: #8c7a1a;
+    font-size: 26px;
     margin-bottom: 15px;
 }
 
-.comment-item {
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 12px;
+.page-vente .annonces-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.comment-meta {
-    font-size: 14px;
-    color: #7a715f;
+.page-vente .annonce-card {
+    background-color: white;
+    padding: 18px;
+    border-radius: 8px;
+    display: flex;
+    gap: 18px;
+    border: 1px solid #eee5d5;
+}
+
+.page-vente .annonce-card img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: #e4d8c2;
+}
+
+.page-vente .annonce-contenu {
+    flex: 1;
+}
+
+.page-vente .annonce-contenu h3 {
+    color: #8c7a1a;
+    font-size: 22px;
     margin-bottom: 8px;
 }
 
-.no-comment {
-    margin-bottom: 15px;
-    color: #7a715f;
+.page-vente .annonce-info {
+    color: #6b6255;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
-.comment-form {
-    margin-top: 20px;
+.page-vente .annonce-prix {
+    color: #8c7a1a;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.page-vente .annonce-formulaire {
+    flex: 1;
+    background-color: #f8f5ef;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.page-vente form {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.comment-form label {
-    color: #8c7a1a;
+.page-vente label {
     font-weight: bold;
 }
 
-.comment-form select,
-.comment-form textarea {
+.page-vente input,
+.page-vente textarea {
     padding: 12px;
-    border: 1px solid #d8ccb0;
-    border-radius: 8px;
+    border: 1px solid #d1c4a3;
+    border-radius: 6px;
+    font-size: 16px;
     font-family: Arial, sans-serif;
-    font-size: 15px;
 }
 
-// Vente 
+.page-vente textarea {
+    min-height: 120px;
+    resize: vertical;
+}
 
-.sale-toolbar {
+.page-vente button {
+    background-color: #9f8d1e;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.page-vente button:hover {
+    background-color: #817316;
+}
+
+.page-vente .connexion-buttons {
     display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-.sale-filter {
-    background-color: #f8f5ef;
-    color: #8c7a1a;
+.page-vente .connexion-buttons a {
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
     padding: 12px 18px;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
 }
 
-.sale-grid {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
+.page-panier .panier-titre {
+    color: #8c7a1a;
+    font-size: 30px;
+    margin-bottom: 25px;
 }
 
-.sale-card {
+.page-panier .panier-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.page-panier .panier-articles {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.page-panier .panier-vide {
     background-color: #f8f5ef;
-    border-radius: 15px;
-    padding: 20px;
-    flex: 1;
-}
-
-.sale-cover {
-    background-color: #e8dfd1;
-    color: #8c7a1a;
-    height: 180px;
     border-radius: 10px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+    padding: 50px 30px;
+    text-align: center;
+    color: #7a715f;
+    font-size: 18px;
 }
 
-.sale-card h2 {
-    color: #8c7a1a;
-    font-size: 22px;
+.page-panier .panier-icone {
+    font-size: 48px;
     margin-bottom: 10px;
 }
 
-.sale-author,
-.sale-price {
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.sale-price {
+.page-panier .panier-vide a {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
     font-weight: bold;
 }
 
-.sale-description {
-    margin-bottom: 15px;
-}
-
-.sale-info {
-    background-color: white;
+.page-panier .panier-item {
+    background-color: #f8f5ef;
     border-radius: 10px;
-    padding: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    border: 1px solid #eee5d5;
 }
 
-.sale-info p {
-    margin-bottom: 6px;
-    font-size: 15px;
+.page-panier .panier-item-image {
+    width: 90px;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #e8dfd1;
 }
 
-.sale-info p:last-child {
-    margin-bottom: 0;
+.page-panier .panier-item-info {
+    flex: 1;
+}
+
+.page-panier .panier-item-info h3 {
+    color: #8c7a1a;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.page-panier .item-description {
+    color: #4d4433;
+    margin-bottom: 10px;
+}
+
+.page-panier .item-vendeur {
+    color: #7a715f;
+    font-size: 14px;
+}
+
+.page-panier .panier-item-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+    min-width: 110px;
+}
+
+.page-panier .item-prix {
+    font-size: 22px;
+    font-weight: bold;
+    color: #8c7a1a;
+}
+
+.page-panier .btn-supprimer {
+    background-color: white;
+    border: 1px solid #d8ccb0;
+    color: #9a5d45;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.page-panier .btn-supprimer:hover {
+    background-color: #fdf0ed;
+    border-color: #c9907a;
+    color: #b05a40;
+}
+
+.page-panier .panier-recap {
+    flex: 1;
+}
+
+.page-panier .recap-box {
+    background-color: #f8f5ef;
+    border-radius: 10px;
+    padding: 28px;
+}
+
+.page-panier .recap-box h2 {
+    color: #8c7a1a;
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0d5bd;
+    padding-bottom: 14px;
+}
+
+.page-panier .recap-ligne {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.page-panier .recap-ligne.total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #8c7a1a;
+    border-top: 1px solid #e0d5bd;
+    padding-top: 14px;
+}
+
+.page-panier .btn-commander {
+    display: block;
+    width: 100%;
+    background-color: #9f8d1e;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+.page-panier .btn-commander:hover {
+    background-color: #817316;
+}
+
+.page-panier .btn-continuer {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    color: #9f8d1e;
+    text-decoration: none;
+    font-weight: bold;
 }

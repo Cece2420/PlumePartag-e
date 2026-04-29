@@ -10,13 +10,18 @@
 <body>
 
     <header class="header">
-        <div class="logo">
-            <a href="index.php">Plume Partagée</a>
-        </div>
+    <div class="logo">
+        <a href="index.php">Plume Partagée</a>
+    </div>
 
-        <div class="header-buttons">
-            <a href="connecter.php" class="btn-header">Se connecter</a>
-        </div>
+    <div class="header-buttons">
+        <?php if (isset($_SESSION["pseudo"])): ?>
+            <span class="user-name">Bonjour <?php echo htmlspecialchars($_SESSION["pseudo"]); ?></span>
+            <a href="pages/deconnexion.php" class="btn-header">Déconnexion</a>
+        <?php else: ?>
+            <a href="pages/connecter.php" class="btn-header">Se connecter</a>
+        <?php endif; ?>
+    </div>
     </header>
 
 <nav class="navbar">
