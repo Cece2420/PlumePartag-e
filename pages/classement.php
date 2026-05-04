@@ -1,110 +1,122 @@
 <?php require_once '../config.php'; ?>
+ 
+<?php
+$sql = "SELECT genre, COUNT(*) AS nombre_sujets
+        FROM sujets
+        GROUP BY genre
+        ORDER BY nombre_sujets DESC
+        LIMIT 5";
+ 
+$stmt = $pdo->query($sql);
+$genres = $stmt->fetchAll();
+?>
+ 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plume Partagée - Accueil</title>
-    <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<title>Top genres - Plume Partagée</title>
+<link rel="stylesheet" href="../style.css">
 </head>
-<body>
-
-    <header class="header">
-        <div class="logo">
-            <a href="../index.php">Plume Partagée</a>
-        </div>
-
-        <div class="header-buttons">
-            <a href="comptes/connecter.php" class="btn-header">Se connecter</a>
-        </div>
-    </header>
-
+ 
+<body class="page-classement">
+ 
+<header class="header">
+<div class="logo">
+<a href="../index.php">Plume Partagée</a>
+</div>
+ 
+    <div class="header-buttons">
+<?php if (isset($_SESSION["pseudo"])): ?>
+<span class="user-name">Bonjour <?php echo htmlspecialchars($_SESSION["pseudo"]); ?></span>
+<a href="deconnexion.php" class="btn-header">Déconnexion</a>
+<?php else: ?>
+<a href="connecter.php" class="btn-header">Se connecter</a>
+<?php endif; ?>
+</div>
+</header>
+ 
 <nav class="navbar">
-    <a href="../index.php">Accueil</a>
-    <a href="pages/forum.php">Forum</a>
-    <a href="pages/vente.php">Vente</a>
-    <a href="pages/classement.php">Classement</a>
-    <a href="pages/bibliotheque.php">Bibliothèque</a>
-    <a href="pages/entreprise.php">À propos de nous</a>
+<a href="../index.php">Accueil</a>
+<a href="forum.php">Forum</a>
+<a href="vente.php">Vente</a>
+<a href="classement.php">Top genres</a>
+<a href="bibliotheque.php">Bibliothèque</a>
+<a href="entreprise.php">À propos de nous</a>
 </nav>
-
-    <main class="main-content">
-
-    <section class="welcome-box">
-        <h1>Bienvenue sur Plume Partagée ✨</h1>
-        <p>
-            Installe-toi confortablement et laisse-toi emporter dans un univers
-            dédié aux livres et aux histoires. Ici, chaque lecteur peut partager
-            ses découvertes, ses émotions et ses coups de cœur.
-        </p>
+ 
+<main class="main">
+ 
+    <section class="classement-intro">
+<h1>Top genres</h1>
+<p>
+            Cette page affiche les genres les plus populaires du forum.
+            Le classement est généré automatiquement à partir des sujets publiés par les utilisateurs.
+</p>
+</section>
+ 
+    <section class="top-genres">
+ 
+        <?php if (count($genres) == 0): ?>
+ 
+            <div class="classement-vide">
+<p>Aucun genre n’est encore disponible.</p>
+<p>Le classement apparaîtra lorsque des sujets seront publiés sur le forum.</p>
+<a href="forum.php">Publier un sujet</a>
+</div>
+ 
+        <?php else: ?>
+ 
+            <?php $rang = 1; ?>
+<?php foreach ($genres as $genre): ?>
+<article class="genre-card <?php if ($rang == 1) echo 'premier'; ?>">
+<div class="rang"><?php echo $rang; ?></div>
+ 
+                    <div>
+<h2><?php echo htmlspecialchars($genre["genre"]); ?></h2>
+ 
+                        <p>
+                            Ce genre apparaît dans
+<strong><?php echo $genre["nombre_sujets"]; ?></strong>
+                            sujet(s) du forum.
+</p>
+ 
+                        <?php if ($rang == 1): ?>
+<p class="genre-populaire">
+                                C’est actuellement le genre le plus populaire de la communauté.
+</p>
+<?php endif; ?>
+</div>
+</article>
+ 
+                <?php $rang++; ?>
+<?php endforeach; ?>
+ 
+        <?php endif; ?>
+ 
     </section>
-
-    <section class="cards-section">
-        <div class="card">
-            <h2>📚 Trouve ta prochaine lecture</h2>
-            <p>
-                Parcours des œuvres recommandées et découvre des livres qui
-                correspondent à ton univers.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>⭐ Partage ton ressenti</h2>
-            <p>
-                Donne ton avis, note les livres et aide les autres lecteurs à
-                choisir leur prochaine lecture.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>🛍️ Donne une seconde vie aux livres</h2>
-            <p>
-                Échange, vends ou trouve des ouvrages pour continuer à faire vivre
-                les histoires.
-            </p>
-        </div>
-    </section>
-
-    <section class="welcome-box">
-        <h1>Un espace cosy pour lire et échanger</h1>
-        <p>
-            Plume Partagée est pensé comme un endroit calme et chaleureux,
-            où chaque utilisateur peut prendre le temps de lire, découvrir
-            et partager sans pression.
-        </p>
-    </section>
-
-    <section class="cards-section">
-        <div class="card">
-            <h2>🌙 Ambiance détente</h2>
-            <p>
-                Un design doux et apaisant pour profiter de tes moments de lecture.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>💡 Découvertes</h2>
-            <p>
-                Laisse-toi surprendre par de nouvelles histoires et de nouveaux univers.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>❤️ Partage</h2>
-            <p>
-                Échange avec d’autres passionnés et enrichis ton expérience de lecteur.
-            </p>
-        </div>
-    </section>
-
+ 
+    <section class="classement-info">
+<h2>Comment le classement est-il calculé ?</h2>
+<p>
+            Le site compte automatiquement le nombre de sujets publiés pour chaque genre.
+            Plus un genre est utilisé dans le forum, plus il monte dans le classement.
+</p>
+ 
+        <div class="classement-buttons">
+<a href="forum.php">Participer au forum</a>
+<a href="vente.php">Voir les livres en vente</a>
+</div>
+</section>
+ 
 </main>
-
-    <footer class="footer">
-        <a href="pages/entreprise.php#aide">Aide</a>
-        <a href="pages/entreprise.php#services">Services</a>
-        <a href="pages/entreprise.php#entreprise">L’entreprise</a>
-        <a href="pages/entreprise.php#questions">Questions?</a>
-    </footer>
-
+ 
+<footer class="footer">
+<a href="entreprise.php#aide">Aide</a>
+<a href="entreprise.php#services">Services</a>
+<a href="entreprise.php#entreprise">L’entreprise</a>
+<a href="entreprise.php#questions">Questions?</a>
+</footer>
+ 
 </body>
 </html>

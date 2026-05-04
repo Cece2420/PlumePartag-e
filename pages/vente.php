@@ -11,13 +11,12 @@ if (!isset($_SESSION["panier"])) {
 if (isset($_POST["ajouter_annonce"])) {
     if (isset($_SESSION["utilisateur_id"])) {
 
-        $titre = $_POST["titre"];
-        $description = $_POST["description"];
+        $titre = trim($_POST["titre"]);
+        $description = trim($_POST["description"]);
         $prix = $_POST["prix"];
-        $image = $_FILES["image"]["name"];
 
-        if ($titre != "" && $description != "" && $prix != "" && $image != "") {
-            $image = time() . "_" . $image;
+        if ($titre != "" && $description != "" && $prix != "" && isset($_FILES["image"]) && $_FILES["image"]["name"] != "") {
+            $image = time() . "_" . basename($_FILES["image"]["name"]);
             $dossier = "../uploads/annonces/";
 
             if (!is_dir($dossier)) {
@@ -31,7 +30,13 @@ if (isset($_POST["ajouter_annonce"])) {
             $sql = "INSERT INTO annonces (titre, description, image, prix, utilisateur_id)
                     VALUES (?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$titre, $description, $chemin_image, $prix, $_SESSION["utilisateur_id"]]);
+            $stmt->execute([
+                $titre,
+                $description,
+                $chemin_image,
+                $prix,
+                $_SESSION["utilisateur_id"]
+            ]);
 
             header("Location: vente.php");
             exit;
@@ -41,6 +46,34 @@ if (isset($_POST["ajouter_annonce"])) {
 
     } else {
         $message = "Vous devez être connecté pour publier une annonce.";
+    }
+}
+
+/* Ajouter aux favoris */
+if (isset($_POST["ajouter_favori"])) {
+    if (isset($_SESSION["utilisateur_id"])) {
+        $annonce_id = $_POST["annonce_id"];
+        $utilisateur_id = $_SESSION["utilisateur_id"];
+
+        $sql = "SELECT * FROM favoris 
+                WHERE utilisateur_id = ? AND annonce_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$utilisateur_id, $annonce_id]);
+        $favori_existe = $stmt->fetch();
+
+        if ($favori_existe) {
+            $message = "Ce livre est déjà dans votre bibliothèque.";
+        } else {
+            $sql = "INSERT INTO favoris (utilisateur_id, annonce_id)
+                    VALUES (?, ?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$utilisateur_id, $annonce_id]);
+
+            $message = "Livre ajouté à votre bibliothèque.";
+        }
+
+    } else {
+        $message = "Vous devez être connecté pour ajouter un favori.";
     }
 }
 
@@ -64,7 +97,6 @@ if (isset($_POST["ajouter_panier"])) {
         ];
 
         $_SESSION["panier"][] = $article;
-
         $message = "L'article a été ajouté au panier.";
     }
 }
@@ -170,10 +202,17 @@ $annonces = $stmt->fetchAll();
                                 <?php echo number_format($annonce["prix"], 2, ",", " "); ?> €
                             </p>
 
-                            <form method="POST">
-                                <input type="hidden" name="annonce_id" value="<?php echo $annonce["id"]; ?>">
-                                <button type="submit" name="ajouter_panier">Ajouter au panier</button>
-                            </form>
+                            <div class="annonce-boutons">
+                                <form method="POST">
+                                    <input type="hidden" name="annonce_id" value="<?php echo $annonce["id"]; ?>">
+                                    <button type="submit" name="ajouter_panier">Ajouter au panier</button>
+                                </form>
+
+                                <form method="POST">
+                                    <input type="hidden" name="annonce_id" value="<?php echo $annonce["id"]; ?>">
+                                    <button type="submit" name="ajouter_favori">Ajouter aux favoris</button>
+                                </form>
+                            </div>
                         </div>
                     </article>
                 <?php endforeach; ?>

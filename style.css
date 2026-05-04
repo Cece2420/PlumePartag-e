@@ -18,6 +18,8 @@ body {
     flex-direction: column;
 }
 
+/* HEADER */
+
 .header {
     background-color: #dcc9a9;
     padding: 25px 40px;
@@ -58,6 +60,8 @@ body {
     background-color: #817316;
 }
 
+/* NAVIGATION */
+
 .navbar {
     background-color: #9f8d1e;
     margin: 0 30px;
@@ -77,6 +81,8 @@ body {
     text-decoration: underline;
 }
 
+/* STRUCTURE */
+
 .main {
     background-color: white;
     margin: 20px 30px;
@@ -84,6 +90,8 @@ body {
     border-radius: 8px;
     flex: 1;
 }
+
+/* ACCUEIL */
 
 .accueil {
     background-color: #f8f5ef;
@@ -261,6 +269,8 @@ body {
     font-size: 17px;
 }
 
+/* CONNEXION / INSCRIPTION */
+
 .page-auth .auth-card {
     background-color: #f8f5ef;
     padding: 35px;
@@ -320,6 +330,8 @@ body {
     color: #8c7a1a;
     font-weight: bold;
 }
+
+/* FORUM */
 
 .page-forum .forum-layout {
     display: flex;
@@ -499,6 +511,8 @@ body {
     color: #6b6255;
 }
 
+/* MESSAGES */
+
 .message {
     background-color: #fff3cd;
     color: #6b5b00;
@@ -514,10 +528,7 @@ body {
     color: #8c7a1a;
 }
 
-.user-name {
-    font-weight: bold;
-    color: #4d4433;
-}
+/* FOOTER */
 
 .footer {
     background-color: #9f8d1e;
@@ -537,6 +548,8 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+/* VENTE */
 
 .page-vente .vente-intro {
     background-color: #f8f5ef;
@@ -702,6 +715,19 @@ body {
     border-radius: 6px;
     font-weight: bold;
 }
+
+.page-vente .annonce-boutons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.page-vente .annonce-boutons form {
+    margin: 0;
+}
+
+/* PANIER */
 
 .page-panier .panier-titre {
     color: #8c7a1a;
@@ -872,4 +898,501 @@ body {
     color: #9f8d1e;
     text-decoration: none;
     font-weight: bold;
+}
+
+/* CLASSEMENT / TOP GENRES */
+
+.page-classement .classement-intro {
+    background-color: #f8f5ef;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-classement .classement-intro h1 {
+    color: #8c7a1a;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.page-classement .classement-intro p {
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.page-classement .top-genres {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.page-classement .genre-card {
+    background-color: #f8f5ef;
+    border: 1px solid #eee5d5;
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-classement .genre-card.premier {
+    background-color: #f3ecdf;
+}
+
+.page-classement .rang {
+    background-color: #9f8d1e;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.page-classement .genre-card h2 {
+    color: #8c7a1a;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.page-classement .genre-card p {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.page-classement .genre-populaire {
+    color: #8c7a1a;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.page-classement .classement-vide {
+    background-color: #f8f5ef;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.page-classement .classement-vide p {
+    margin-bottom: 12px;
+}
+
+.page-classement .classement-vide a {
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.page-classement .classement-vide a:hover {
+    background-color: #817316;
+}
+
+.page-classement .classement-info {
+    background-color: #f3ecdf;
+    padding: 28px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.page-classement .classement-info h2 {
+    color: #8c7a1a;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.page-classement .classement-info p {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.page-classement .classement-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.page-classement .classement-buttons a {
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.page-classement .classement-buttons a:hover {
+    background-color: #817316;
+}
+
+/* BIBLIOTHÈQUE */
+
+.page-bibliotheque .bibliotheque-intro {
+    background-color: #f8f5ef;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-bibliotheque .bibliotheque-intro h1 {
+    color: #8c7a1a;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.page-bibliotheque .bibliotheque-intro p {
+    font-size: 17px;
+}
+
+.page-bibliotheque .bibliotheque-section {
+    background-color: #f8f5ef;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-bibliotheque .bibliotheque-section h2 {
+    color: #8c7a1a;
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.page-bibliotheque .bibli-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.page-bibliotheque .book-card-fav {
+    background-color: white;
+    border: 1px solid #eee5d5;
+    border-radius: 10px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.page-bibliotheque .book-cover-mini {
+    width: 65px;
+    height: 85px;
+    background-color: #e4d8c2;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.page-bibliotheque .book-details h3 {
+    color: #8c7a1a;
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.page-bibliotheque .book-details p {
+    margin-bottom: 12px;
+    color: #6b6255;
+}
+
+.page-bibliotheque .btn-retirer {
+    background-color: #9f8d1e;
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.page-bibliotheque .btn-retirer:hover {
+    background-color: #817316;
+}
+
+.page-bibliotheque .suggest-container {
+    display: flex;
+    gap: 18px;
+}
+
+.page-bibliotheque .suggest-card {
+    background-color: white;
+    border: 1px solid #eee5d5;
+    border-radius: 10px;
+    padding: 22px;
+    flex: 1;
+    text-align: center;
+}
+
+.page-bibliotheque .suggest-emoji {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.page-bibliotheque .suggest-card h3 {
+    color: #8c7a1a;
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.page-bibliotheque .suggest-card p {
+    margin-bottom: 15px;
+}
+
+.page-bibliotheque .btn-voir {
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.page-bibliotheque .btn-voir:hover {
+    background-color: #817316;
+}
+
+.page-bibliotheque .bibli-vide {
+    color: #7a715f;
+    font-style: italic;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* ENTREPRISE */
+
+.page-entreprise .about-plume {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-entreprise .about-plume h2 {
+    color: #8c7a1a;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.page-entreprise .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.page-entreprise .about-card {
+    padding: 25px;
+    border-left: 4px solid #9f8d1e;
+    background: #fcfaf7;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.page-entreprise .about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.page-entreprise .about-card h3 {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #9f8d1e;
+    margin-bottom: 10px;
+}
+
+.page-entreprise .about-card h4 {
+    font-size: 22px;
+    color: #4d4433;
+    margin-bottom: 15px;
+}
+
+.page-entreprise .about-card p {
+    line-height: 1.7;
+    color: #7a715f;
+    font-size: 15px;
+}
+
+/* AIDE ENTREPRISE */
+
+.page-entreprise .help-section {
+    background-color: #f8f5ef;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-entreprise .help-intro h2 {
+    color: #8c7a1a;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.page-entreprise .help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.page-entreprise .help-card {
+    background-color: white;
+    padding: 22px;
+    border-radius: 10px;
+    border: 1px solid #eee5d5;
+}
+
+.page-entreprise .help-card h3 {
+    color: #8c7a1a;
+    margin-bottom: 10px;
+}
+
+.page-entreprise .help-card p {
+    color: #7a715f;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.page-entreprise .help-link {
+    color: #8c7a1a;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.page-entreprise .help-link:hover {
+    text-decoration: underline;
+}
+
+/* FAQ ENTREPRISE */
+
+.page-entreprise .faq-section {
+    background-color: #f8f5ef;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.page-entreprise .faq-hero {
+    background: #4d4433;
+    padding: 45px 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.page-entreprise .faq-hero h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.page-entreprise .faq-tags {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #d8ccb0;
+}
+
+.page-entreprise .faq-tag {
+    border: 1px solid #d8ccb0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.page-entreprise .faq-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-entreprise .faq-list-container h3 {
+    color: #8c7a1a;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.page-entreprise .faq-card {
+    border: 1px solid #e8dfd1;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.page-entreprise .faq-question {
+    padding: 20px;
+    font-weight: bold;
+    color: #4d4433;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-entreprise .faq-answer {
+    padding: 0 20px 20px 20px;
+    color: #7a715f;
+    border-top: 1px solid #f8f5ef;
+    padding-top: 15px;
+}
+
+.page-entreprise .separator {
+    border: none;
+    height: 1px;
+    background-color: #e0d5bd;
+    margin: 25px 0;
+}
+
+/* RESPONSIVE SIMPLE */
+
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .accueil_suggestion,
+    .accueil_options,
+    .accueil_highlight,
+    .page-forum .forum-layout,
+    .page-vente .vente-layout,
+    .page-panier .panier-layout,
+    .page-bibliotheque .suggest-container {
+        flex-direction: column;
+    }
+
+    .page-vente .vente-intro {
+        flex-direction: column;
+    }
+
+    .page-vente .annonce-card,
+    .page-panier .panier-item,
+    .page-bibliotheque .book-card-fav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    .logo a {
+        font-size: 34px;
+    }
 }
