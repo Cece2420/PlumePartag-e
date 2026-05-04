@@ -1396,3 +1396,157 @@ body {
         font-size: 34px;
     }
 }
+
+/* ACCUEIL MODERNE */
+
+.hero-accueil {
+    background: linear-gradient(135deg, #f8f5ef, #f3ecdf);
+    padding: 45px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.hero-texte {
+    flex: 2;
+}
+
+.badge-accueil {
+    display: inline-block;
+    background-color: white;
+    color: #8c7a1a;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.hero-accueil h1 {
+    color: #3f382d;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero-accueil h1 span {
+    color: #9f8d1e;
+}
+
+.hero-accueil p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.hero-boutons {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-boutons a {
+    background-color: #9f8d1e;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.hero-boutons .bouton-secondaire {
+    background-color: white;
+    color: #8c7a1a;
+    border: 1px solid #d8ccb0;
+}
+
+.hero-carte {
+    flex: 1;
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #eee5d5;
+}
+
+.emoji {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.hero-carte h2 {
+    color: #8c7a1a;
+    margin-bottom: 10px;
+}
+
+.hero-carte p {
+    font-size: 16px;
+}
+
+.accueil-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 28px;
+}
+
+.action-card {
+    background-color: #f8f5ef;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #eee5d5;
+}
+
+.action-card span {
+    color: #9f8d1e;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.action-card h2 {
+    color: #8c7a1a;
+    margin: 12px 0 10px;
+}
+
+.action-card p {
+    line-height: 1.5;
+}
+
+.accueil-ambiance {
+    background-color: #f3ecdf;
+    padding: 30px;
+    border-radius: 14px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.accueil-ambiance > div:first-child {
+    flex: 2;
+}
+
+.accueil-ambiance h2 {
+    color: #8c7a1a;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.accueil-ambiance p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.ambiance-liste {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ambiance-liste p {
+    background-color: white;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}

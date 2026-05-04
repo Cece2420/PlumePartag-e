@@ -4,7 +4,6 @@
 $favoris = [];
 $message = "";
 
-/* Retirer un favori */
 if (isset($_POST["retirer_favori"]) && isset($_SESSION["utilisateur_id"])) {
     $favori_id = $_POST["favori_id"];
     $utilisateur_id = $_SESSION["utilisateur_id"];
@@ -17,7 +16,6 @@ if (isset($_POST["retirer_favori"]) && isset($_SESSION["utilisateur_id"])) {
     $message = "Livre retiré de votre bibliothèque.";
 }
 
-/* Récupérer les favoris de l'utilisateur connecté */
 if (isset($_SESSION["utilisateur_id"])) {
     $utilisateur_id = $_SESSION["utilisateur_id"];
 
@@ -77,7 +75,7 @@ if (isset($_SESSION["utilisateur_id"])) {
 <main class="main">
 
     <section class="bibliotheque-intro">
-        <h1>Ma Bibliothèque 📚</h1>
+        <h1>Ma Bibliothèque </h1>
         <p>
             Retrouvez ici les livres que vous avez ajoutés à vos favoris depuis la page Vente.
         </p>
@@ -88,11 +86,11 @@ if (isset($_SESSION["utilisateur_id"])) {
     <?php endif; ?>
 
     <section class="bibliotheque-section">
-        <h2>Mes favoris ❤️</h2>
+        <h2>Mes favoris </h2>
 
         <?php if (!isset($_SESSION["utilisateur_id"])): ?>
 
-            <p>Vous devez être connecté pour voir votre bibliothèque.</p>
+            <p>Vous devez être connecté pour voir votre bibliothèque.</p></br>
             <a href="connecter.php" class="btn-voir">Se connecter</a>
 
         <?php elseif (count($favoris) == 0): ?>
@@ -151,7 +149,7 @@ if (isset($_SESSION["utilisateur_id"])) {
     </section>
 
     <section class="bibliotheque-section">
-        <h2>Suggestions pour vous ✨</h2>
+        <h2>Quelques suggestions pour vous !</h2>
 
         <div class="suggest-container">
 

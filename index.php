@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <header class="header">
+<header class="header">
     <div class="logo">
         <a href="index.php">Plume Partagée</a>
     </div>
@@ -22,7 +22,7 @@
             <a href="pages/connecter.php" class="btn-header">Se connecter</a>
         <?php endif; ?>
     </div>
-    </header>
+</header>
 
 <nav class="navbar">
     <a href="index.php">Accueil</a>
@@ -35,111 +35,76 @@
 
 <main class="main">
 
-    <section class="accueil">
-        <div class="accueil_text">
+    <section class="hero-accueil">
+        <div class="hero-texte">
+            <p class="badge-accueil">Communauté de lecteurs</p>
+
             <h1>Bienvenue sur <span>Plume Partagée</span></h1>
+
             <p>
-                Entre dans un espace chaleureux où les livres circulent, les avis se croisent
-                et les histoires continuent de vivre. Découvre, partage et échange dans une
-                ambiance douce et inspirante auprès d'une communauté passionée.
+                Un espace pour découvrir des livres, partager ses coups de cœur,
+                vendre ses ouvrages et échanger avec d’autres passionnés.
             </p>
 
-            <div class="bienvenue">
-                <h2>Nous vous invitons à explorer les différents espaces du site pour tirer le meilleur de votre expérience !</h2>
+            <div class="hero-boutons">
+                <a href="pages/vente.php">Voir les livres</a>
+                <a href="pages/forum.php" class="bouton-secondaire">Aller au forum</a>
             </div>
+        </div>
 
-            <div class="accueil_suggestion">
-                <div class="suggestion">
-                    <strong>Découvrez</strong>
-                    <span>de nouvelles lectures</span>
-                </div>
-                <div class="suggestion">
-                    <strong>Partagez</strong>
-                    <span>vos impressions</span>
-                </div>
-                <div class="suggestion">
-                    <strong>Échangez</strong>
-                    <span>et faites vivre les livres</span>
-                </div>
-            </div> 
-
-        <div class="accueil_devise">
-            <div class="acceuil_dev">
-                <h3 class="mini_titre">Notre devise</h3>
-                <p class="accueil_moto">
-                    “Un lecteur vit mille vies avant de mourir. Celui qui ne lit pas n’en vit qu’une.”
-                </p>
-            </div>
-
+        <div class="hero-carte">
+            <div class="emoji">☀︎</div>
+            <h2>Lire, partager, transmettre</h2>
+            <p>Chaque livre peut continuer son histoire avec un nouveau lecteur.</p>
         </div>
     </section>
 
-    <section class="accueil_options">
-        <div class="carte_accueil">
-            <div class="accueil_icon"></div>
-            <h2>Trouve ta prochaine lecture</h2>
-            <p>
-                Parcours des œuvres recommandées, découvre des univers variés
-                et laisse-toi surprendre par de nouveaux coups de cœur.
-            </p>
-            <a href="pages/bibliotheque.php">Découvrir</a>
-        </div>
+    <section class="accueil-actions">
+        <article class="action-card">
+            <span>01</span>
+            <h2>Découvrir</h2>
+            <p>Consulte les annonces et trouve ta prochaine lecture.</p>
+        </article>
 
-        <div class="carte_accueil">
-            <div class="accueil_icon"></div>
-            <h2>Partage ton ressenti</h2>
-            <p>
-                Donne ton avis, note les livres et échange avec d’autres lecteurs
-                pour enrichir chaque découverte.
-            </p>
-            <a href="pages/forum.php">Participer</a>
-        </div>
+        <article class="action-card">
+            <span>02</span>
+            <h2>Échanger</h2>
+            <p>Pose des questions et partage tes avis sur le forum.</p>
+        </article>
 
-        <div class="carte_accueil">
-            <div class="accueil_icon"></div>
-            <h2>Offre une seconde vie aux livres</h2>
-            <p>
-                Vends, échange ou retrouve des ouvrages pour prolonger
-                leur histoire entre plusieurs lecteurs.
-            </p>
-            <a href="pages/vente.php">Voir les annonces</a>
-        </div>
+        <article class="action-card">
+            <span>03</span>
+            <h2>Revendre</h2>
+            <p>Publie une annonce pour donner une seconde vie à tes livres.</p>
+        </article>
     </section>
 
-    <section class="accueil_highlight">
-        <div class="highlight">
-            <h2>Un cocon pour les amoureux des histoires</h2>
+    <section class="accueil-ambiance">
+        <div>
+            <h2>Pourquoi Plume Partagée ?</h2>
             <p>
-                Plume Partagée est pensé comme un lieu calme, inspirant et accueillant.
-                Ici, on prend le temps de lire, de discuter, de transmettre ses émotions
-                et de créer des passerelles entre lecteurs.
+                Le site a été pensé comme une plateforme simple et chaleureuse.
+                Il permet aux lecteurs de se retrouver autour d’une passion commune :
+                les livres, les histoires et les découvertes.
             </p>
         </div>
 
-        <div class="objectifs">
-            <h3>L’esprit du site</h3>
-            <div class="objectif">Une ambiance douce et chaleureuse</div>
-                <div class="objectif">Des échanges simples et sincères</div>
-                <div class="objectif">Des découvertes pour tous les goûts</div>
-                <div class="objectif">Une communauté autour des livres</div>
+        <div class="ambiance-liste">
+            <p>Une ambiance douce</p>
+            <p>Des échanges entre lecteurs</p>
+            <p>Des livres à vendre</p>
+            <p>Des favoris à conserver</p>
         </div>
-    </section>
-
-    <section class="recommendation">
-        <h2>Chaque livre mérite une nouvelle rencontre</h2>
-        <p>
-            Lis, recommande, commente ou revends : sur Plume Partagée, chaque page peut continuer son voyage.
-        </p>
     </section>
 
 </main>
 
-    <footer class="footer">
-        <a href="pages/entreprise.php#aide">Aide</a>
-        <a href="pages/entreprise.php#services">Services</a>
-        <a href="pages/entreprise.php#entreprise">L’entreprise</a>
-        <a href="pages/entreprise.php#questions">Questions?</a>
-    </footer>
+<footer class="footer">
+    <a href="pages/entreprise.php#aide">Aide</a>
+    <a href="pages/entreprise.php#services">Services</a>
+    <a href="pages/entreprise.php#entreprise">L’entreprise</a>
+    <a href="pages/entreprise.php#questions">Questions?</a>
+</footer>
 
 </body>
 </html>
