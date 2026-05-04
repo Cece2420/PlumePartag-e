@@ -41,11 +41,11 @@
             <p>
                 Entre dans un espace chaleureux où les livres circulent, les avis se croisent
                 et les histoires continuent de vivre. Découvre, partage et échange dans une
-                ambiance douce et inspirante aupèrs d'une communauté passionée.
+                ambiance douce et inspirante auprès d'une communauté passionée.
             </p>
 
             <div class="bienvenue">
-                <h2>Nous vous invitons à explorer les différents espaces du site pour tirez le meilleur de votre expérience !</h2>
+                <h2>Nous vous invitons à explorer les différents espaces du site pour tirer le meilleur de votre expérience !</h2>
             </div>
 
             <div class="accueil_suggestion">

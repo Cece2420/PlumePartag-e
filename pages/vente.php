@@ -7,44 +7,44 @@ if (!isset($_SESSION["panier"])) {
     $_SESSION["panier"] = [];
 }
 
+/* Ajouter une annonce */
 if (isset($_POST["ajouter_annonce"])) {
     if (isset($_SESSION["utilisateur_id"])) {
-        $titre = trim($_POST["titre"]);
-        $description = trim($_POST["description"]);
+
+        $titre = $_POST["titre"];
+        $description = $_POST["description"];
         $prix = $_POST["prix"];
-        $utilisateur_id = $_SESSION["utilisateur_id"];
+        $image = $_FILES["image"]["name"];
 
-        if ($titre != "" && $description != "" && $prix != "" && isset($_FILES["image"])) {
-            $nom_image = $_FILES["image"]["name"];
-            $tmp_image = $_FILES["image"]["tmp_name"];
-
-            $extension = pathinfo($nom_image, PATHINFO_EXTENSION);
-            $nouveau_nom = uniqid() . "." . $extension;
-
+        if ($titre != "" && $description != "" && $prix != "" && $image != "") {
+            $image = time() . "_" . $image;
             $dossier = "../uploads/annonces/";
-            $chemin_image = $dossier . $nouveau_nom;
 
-            if (move_uploaded_file($tmp_image, $chemin_image)) {
-                $image_bdd = "uploads/annonces/" . $nouveau_nom;
-
-                $sql = "INSERT INTO annonces (titre, description, image, prix, utilisateur_id)
-                        VALUES (?, ?, ?, ?, ?)";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([$titre, $description, $image_bdd, $prix, $utilisateur_id]);
-
-                header("Location: vente.php");
-                exit;
-            } else {
-                $message = "Erreur lors de l'envoi de l'image.";
+            if (!is_dir($dossier)) {
+                mkdir($dossier, 0777, true);
             }
+
+            move_uploaded_file($_FILES["image"]["tmp_name"], $dossier . $image);
+
+            $chemin_image = "uploads/annonces/" . $image;
+
+            $sql = "INSERT INTO annonces (titre, description, image, prix, utilisateur_id)
+                    VALUES (?, ?, ?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$titre, $description, $chemin_image, $prix, $_SESSION["utilisateur_id"]]);
+
+            header("Location: vente.php");
+            exit;
         } else {
             $message = "Veuillez remplir tous les champs.";
         }
+
     } else {
         $message = "Vous devez être connecté pour publier une annonce.";
     }
 }
 
+/* Ajouter un article au panier */
 if (isset($_POST["ajouter_panier"])) {
     $annonce_id = $_POST["annonce_id"];
 
@@ -69,12 +69,14 @@ if (isset($_POST["ajouter_panier"])) {
     }
 }
 
+/* Compter les articles du panier */
 $nombre_articles = 0;
 
 foreach ($_SESSION["panier"] as $article) {
     $nombre_articles = $nombre_articles + $article["quantite"];
 }
 
+/* Récupérer les annonces */
 $sql = "SELECT annonces.*, utilisateurs.pseudo
         FROM annonces
         INNER JOIN utilisateurs ON annonces.utilisateur_id = utilisateurs.id
