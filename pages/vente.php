@@ -18,10 +18,6 @@ if (isset($_POST["ajouter_annonce"])) {
             $image = time() . "_" . basename($_FILES["image"]["name"]);
             $dossier = "../uploads/annonces/";
 
-            if (!is_dir($dossier)) {
-                mkdir($dossier, 0777, true);
-            }
-
             move_uploaded_file($_FILES["image"]["tmp_name"], $dossier . $image);
 
             $chemin_image = "uploads/annonces/" . $image;
@@ -54,7 +50,7 @@ if (isset($_POST["ajouter_favori"])) {
         $utilisateur_id = $_SESSION["utilisateur_id"];
 
         $sql = "SELECT * FROM favoris 
-                WHERE utilisateur_id = ? AND annonce_id = ?";
+        WHERE utilisateur_id = ? AND annonce_id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$utilisateur_id, $annonce_id]);
         $favori_existe = $stmt->fetch();
@@ -63,7 +59,7 @@ if (isset($_POST["ajouter_favori"])) {
             $message = "Ce livre est déjà dans votre bibliothèque.";
         } else {
             $sql = "INSERT INTO favoris (utilisateur_id, annonce_id)
-                    VALUES (?, ?)";
+            VALUES (?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$utilisateur_id, $annonce_id]);
 
