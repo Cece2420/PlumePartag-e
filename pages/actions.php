@@ -15,25 +15,24 @@ if ($action == "ajouter_like") {
         echo json_encode(["success" => false, "message" => "Vous devez être connecté."]);
         exit;
     }
-
-    $sujet_id = $_POST["sujet_id"];
-    $utilisateur_id = $_SESSION["utilisateur_id"];
+$sujet_id = $_POST["sujet_id"];
+$utilisateur_id = $_SESSION["utilisateur_id"];
 
     $sql = "INSERT IGNORE INTO likes (sujet_id, utilisateur_id) VALUES (?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$sujet_id, $utilisateur_id]);
 
-    $sql = "SELECT COUNT(*) FROM likes WHERE sujet_id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$sujet_id]);
-    $nombre_likes = $stmt->fetchColumn();
+$sql = "SELECT COUNT(*) FROM likes WHERE sujet_id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$sujet_id]);
+$nombre_likes = $stmt->fetchColumn();
 
-    echo json_encode([
-        "success" => true,
-        "message" => "Like ajouté.",
-        "nombre_likes" => $nombre_likes
-    ]);
-    exit;
+echo json_encode([
+    "success" => true,
+    "message" => "Like ajouté.",
+    "nombre_likes" => $nombre_likes
+]);
+exit;
 }
 
 if ($action == "ajouter_commentaire") {
@@ -42,18 +41,18 @@ if ($action == "ajouter_commentaire") {
         exit;
     }
 
-    $sujet_id = $_POST["sujet_id"];
-    $contenu = trim($_POST["contenu_commentaire"]);
-    $utilisateur_id = $_SESSION["utilisateur_id"];
+$sujet_id = $_POST["sujet_id"];
+$contenu = trim($_POST["contenu_commentaire"]);
+$utilisateur_id = $_SESSION["utilisateur_id"];
 
-    if ($contenu == "") {
-        echo json_encode(["success" => false, "message" => "Le commentaire est vide."]);
-        exit;
-    }
+if ($contenu == "") {
+    echo json_encode(["success" => false, "message" => "Le commentaire est vide."]);
+    exit;
+}
 
-    $sql = "INSERT INTO commentaires (contenu, sujet_id, utilisateur_id) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$contenu, $sujet_id, $utilisateur_id]);
+$sql = "INSERT INTO commentaires (contenu, sujet_id, utilisateur_id) VALUES (?, ?, ?)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$contenu, $sujet_id, $utilisateur_id]);
 
     echo json_encode([
         "success" => true,
@@ -70,12 +69,12 @@ if ($action == "ajouter_favori") {
         exit;
     }
 
-    $annonce_id = $_POST["annonce_id"];
-    $utilisateur_id = $_SESSION["utilisateur_id"];
+$annonce_id = $_POST["annonce_id"];
+$utilisateur_id = $_SESSION["utilisateur_id"];
 
-    $sql = "INSERT IGNORE INTO favoris (utilisateur_id, annonce_id) VALUES (?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$utilisateur_id, $annonce_id]);
+$sql = "INSERT IGNORE INTO favoris (utilisateur_id, annonce_id) VALUES (?, ?)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$utilisateur_id, $annonce_id]);
 
     echo json_encode([
         "success" => true,
