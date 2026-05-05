@@ -18,8 +18,6 @@ body {
     flex-direction: column;
 }
 
-/* HEADER */
-
 .header {
     background-color: #dcc9a9;
     padding: 25px 40px;
@@ -60,8 +58,6 @@ body {
     background-color: #817316;
 }
 
-/* NAVIGATION */
-
 .navbar {
     background-color: #9f8d1e;
     margin: 0 30px;
@@ -81,8 +77,6 @@ body {
     text-decoration: underline;
 }
 
-/* STRUCTURE */
-
 .main {
     background-color: white;
     margin: 20px 30px;
@@ -90,8 +84,6 @@ body {
     border-radius: 8px;
     flex: 1;
 }
-
-/* ACCUEIL */
 
 .accueil {
     background-color: #f8f5ef;
@@ -269,8 +261,6 @@ body {
     font-size: 17px;
 }
 
-/* CONNEXION / INSCRIPTION */
-
 .page-auth .auth-card {
     background-color: #f8f5ef;
     padding: 35px;
@@ -330,8 +320,6 @@ body {
     color: #8c7a1a;
     font-weight: bold;
 }
-
-/* FORUM */
 
 .page-forum .forum-layout {
     display: flex;
@@ -511,8 +499,6 @@ body {
     color: #6b6255;
 }
 
-/* MESSAGES */
-
 .message {
     background-color: #fff3cd;
     color: #6b5b00;
@@ -527,8 +513,6 @@ body {
     font-weight: bold;
     color: #8c7a1a;
 }
-
-/* FOOTER */
 
 .footer {
     background-color: #9f8d1e;
@@ -548,8 +532,6 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
-
-/* VENTE */
 
 .page-vente .vente-intro {
     background-color: #f8f5ef;
@@ -727,8 +709,6 @@ body {
     margin: 0;
 }
 
-/* PANIER */
-
 .page-panier .panier-titre {
     color: #8c7a1a;
     font-size: 30px;
@@ -900,8 +880,6 @@ body {
     font-weight: bold;
 }
 
-/* CLASSEMENT / TOP GENRES */
-
 .page-classement .classement-intro {
     background-color: #f8f5ef;
     padding: 30px;
@@ -1036,8 +1014,6 @@ body {
     background-color: #817316;
 }
 
-/* BIBLIOTHÈQUE */
-
 .page-bibliotheque .bibliotheque-intro {
     background-color: #f8f5ef;
     padding: 30px;
@@ -1169,8 +1145,6 @@ body {
     border-radius: 8px;
 }
 
-/* ENTREPRISE */
-
 .page-entreprise .about-plume {
     padding: 40px;
     background-color: #fff;
@@ -1224,8 +1198,6 @@ body {
     font-size: 15px;
 }
 
-/* AIDE ENTREPRISE */
-
 .page-entreprise .help-section {
     background-color: #f8f5ef;
     padding: 30px;
@@ -1274,7 +1246,6 @@ body {
     text-decoration: underline;
 }
 
-/* FAQ ENTREPRISE */
 
 .page-entreprise .faq-section {
     background-color: #f8f5ef;
@@ -1351,53 +1322,6 @@ body {
     background-color: #e0d5bd;
     margin: 25px 0;
 }
-
-/* RESPONSIVE SIMPLE */
-
-@media (max-width: 900px) {
-    .header {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-
-    .accueil_suggestion,
-    .accueil_options,
-    .accueil_highlight,
-    .page-forum .forum-layout,
-    .page-vente .vente-layout,
-    .page-panier .panier-layout,
-    .page-bibliotheque .suggest-container {
-        flex-direction: column;
-    }
-
-    .page-vente .vente-intro {
-        flex-direction: column;
-    }
-
-    .page-vente .annonce-card,
-    .page-panier .panier-item,
-    .page-bibliotheque .book-card-fav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .main {
-        margin: 20px 15px;
-        padding: 20px;
-    }
-
-    .logo a {
-        font-size: 34px;
-    }
-}
-
-/* ACCUEIL MODERNE */
 
 .hero-accueil {
     background: linear-gradient(135deg, #f8f5ef, #f3ecdf);

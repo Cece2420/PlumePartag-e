@@ -7,7 +7,6 @@ if (!isset($_SESSION["panier"])) {
     $_SESSION["panier"] = [];
 }
 
-/* Ajouter une annonce */
 if (isset($_POST["ajouter_annonce"])) {
     if (isset($_SESSION["utilisateur_id"])) {
 
@@ -49,7 +48,6 @@ if (isset($_POST["ajouter_annonce"])) {
     }
 }
 
-/* Ajouter aux favoris */
 if (isset($_POST["ajouter_favori"])) {
     if (isset($_SESSION["utilisateur_id"])) {
         $annonce_id = $_POST["annonce_id"];
@@ -77,7 +75,6 @@ if (isset($_POST["ajouter_favori"])) {
     }
 }
 
-/* Ajouter un article au panier */
 if (isset($_POST["ajouter_panier"])) {
     $annonce_id = $_POST["annonce_id"];
 
@@ -108,7 +105,6 @@ foreach ($_SESSION["panier"] as $article) {
     $nombre_articles = $nombre_articles + $article["quantite"];
 }
 
-/* Récupérer les annonces */
 $sql = "SELECT annonces.*, utilisateurs.pseudo
         FROM annonces
         INNER JOIN utilisateurs ON annonces.utilisateur_id = utilisateurs.id
