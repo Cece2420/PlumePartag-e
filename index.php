@@ -70,6 +70,7 @@
             <span>02</span>
             <h2>Échanger</h2>
             <p>Pose des questions et partage tes avis sur le forum.</p>
+            <p>bonjour</p>
         </article>
 
         <article class="action-card">
