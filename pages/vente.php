@@ -98,7 +98,6 @@ if (isset($_POST["ajouter_panier"])) {
     }
 }
 
-/* Compter les articles du panier */
 $nombre_articles = 0;
 
 foreach ($_SESSION["panier"] as $article) {
